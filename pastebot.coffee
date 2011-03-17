@@ -1,6 +1,4 @@
-################################################################################
-#                                INITIALIZATION                                #
-################################################################################
+#### Initialization
 
 # Require the Express.js library and create the server object. This object,
 # which we'll name `app`, is used in pretty much every statement that follows.
@@ -21,51 +19,42 @@ redis_client.on 'error', (err) ->
 # We're going to store these pastes as base-64 strings to avoid lots of
 # problems. I found a little bit of code for this that will work perfectly,
 # and translated it to CoffeeScript.
-# 
 # See `lib/base64.coffee` for some notes on Node's "exporting" of objects.
-# 
 # http://farhadi.ir/works/base64
 base64 = require './lib/base64'
 
-################################################################################
-#                                CONFIGURATION                                 #
-################################################################################
+#### Configuration
 
 # Enable the bodyParser middleware, so Express knows what to do with the request
 # body on POST requests. This allows us to use `req.body` to access POST data.
-# 
 # http://expressjs.com/guide.html#HTTP-Methods
 app.use express.bodyParser()
 
 # Set the default view engine for this application to Jade. This allows us
 # to omit the extension name when calling render() further on.
-# 
 # http://expressjs.com/guide.html#View-Rendering
 app.set 'view engine', 'jade'
 
-################################################################################
-#                                   ROUTING                                    #
-#                                                                              #
-# Express's routing system is very similar to other common web frameworks (ex. #
-# Sinatra). The basic method structure to set up a route is as follows:        #
-#                                                                              #
-#     app.method path, callback_function                                       #
-#                                                                              #
-# where `method` is the HTTP method of the request, and `callback_function` is #
-# a function which accepts two parameters: a `req` (request) parameter, which  #
-# contains the headers, data, body, etc. of the request, and a `res` (response)#
-# object, which is used to send responses to the client.                       #
-#                                                                              #
-# In this application, we'll be using the `req` variable for its `params` and  #
-# `body` attributes. `params` contains any URL parameters (see the last route) #
-# and `body`, thanks to our bodyParser() setup in Configuration, contains      #
-# POST data sent in requests.                                                  #
-#                                                                              #
-# We will use two methods of the `res` object:                                 #
-#   * `redirect(path, http_code)`                                              #
-#   * `render(view_name, options)`: Renders a view (stored in the `views`      #
-#     directory of this application.                                           #
-################################################################################
+#### Routing
+# Express's routing system is very similar to other common web frameworks (ex.
+# Sinatra). The basic method structure to set up a route is as follows:
+# 
+#     app.method path, callback_function
+# 
+# where `method` is the HTTP method of the request, and `callback_function` is
+# a function which accepts two parameters: a `req` (request) parameter, which
+# contains the headers, data, body, etc. of the request, and a `res` (response)
+# object, which is used to send responses to the client.
+# 
+# In this application, we'll be using the `req` variable for its `params` and
+# `body` attributes. `params` contains any URL parameters (see the last route)
+# and `body`, thanks to our bodyParser() setup in Configuration, contains
+# POST data sent in requests.
+# 
+# We will use two methods of the `res` object:
+#   * `redirect(path, http_code)`
+#   * `render(view_name, options)`: Renders a view (stored in the `views`
+#     directory of this application.
 
 # Let's set up a basic redirect. I'll code a homepage example when I feel less
 # lazy.
