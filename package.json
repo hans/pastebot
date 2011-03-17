@@ -1,0 +1,14 @@
+{
+  'name': 'pastebot',
+  'version': '0.1',
+  'main': 'pastebot',
+  'repository': {
+    'type': 'git',
+    'url': 'http://github.com/hans/pastebot.git'
+  },
+  'dependencies': {
+    'express': '>= 2.0.0',
+    'redis': '>= 0.5.9',
+    'jade': '>= 0.9.1'
+  }
+}
